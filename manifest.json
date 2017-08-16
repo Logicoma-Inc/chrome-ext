@@ -1,0 +1,57 @@
+{
+  "name": "Logicoma Sync",
+  "version": "1.0",
+  "description": "Control and manage your bookmarks with Logicoma's help.",
+  "options_page": "page.html?page=settings",
+  "permissions": [
+    "clipboardWrite",
+    "clipboardRead",
+    "tabs",
+    "contextMenus",
+    "storage",
+	"bookmarks",
+    "http://*/*",
+    "https://*/*"       
+  ],
+  "browser_action": {
+      "default_title": "Logicoma",
+      "default_icon": "icon.png",
+      "default_popup": "popup.html"
+  },
+    "icons": { "16": "img/logic.png",
+             "48": "img/logic.png",
+             "128": "img/logic.png" },
+  "background": {
+  	"scripts": [
+	    "js/lib/jquery-1.10.1.min.js",
+	    "js/lib/bootstrap.js",
+	    "js/lib/async.js",
+	    "js/lib/codebird.js",
+	    "js/common.js",
+	    "js/store.js",
+	    "js/menu.js",
+	    "js/background.js"
+  	],
+    "persistent": false
+  },
+
+  "content_scripts": [
+    {
+      "matches": ["*://*/*"],
+      "all_frames": true,
+      "run_at": "document_idle", 
+      "js": [
+      	"js/lib/jquery-1.10.1.min.js",
+	    "js/lib/async.js",
+      	"js/common.js", 
+      	"js/contentscript.js"
+  	  ],
+      "css": [
+      	"css/contentscript.css"
+  	  ]
+    }
+  ],
+  
+  "web_accessible_resources": ["page.html"],
+  "manifest_version": 2
+}
